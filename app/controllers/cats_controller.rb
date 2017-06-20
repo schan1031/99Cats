@@ -5,6 +5,15 @@ class CatsController < ApplicationController
     render :index
   end
 
+  def show
+    @cat = Cat.find_by(id: params[:id])
+    render :show
+  end
+
+  def create
+    @cat = Cat.new()
+
+  end
 
 
 end

@@ -7,4 +7,8 @@ class Cat < ApplicationRecord
   def age
     Time.now.year - self.birth_date.year
   end
+
+  def self.colors
+    VALID_COLORS
+  end
 end
