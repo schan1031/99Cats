@@ -1,22 +1,40 @@
-<% _action = cat ? cat_url : cats_url %>
-<% _verb = cat ? "PATCH" : "CREATE" %>
+<% _action = cat.id ? cat_url : cats_url %>
+<% _verb = cat.id ? "PATCH" : "CREATE" %>
 
 <form action="<%= _action %>" method="post">
   <input type="hidden" name="_method" value=" <%= _verb %> ">
 
   <label for="name">Name</label>
-  <input type="text" id="name" value=" <%= cat.name %> ">
+  <input type="text" id="name" name="cat[name]" value="<%= cat.name %>">
+
+  <br>
 
   <label for="sex">Sex</label>
-  <input type="radio" id="sex" name="sex" value="M">
-  <input type="radio" id="sex" name="sex" value="F">
+  M<input type="radio" id="sex" name="cat[sex]" value="M" <%= cat.sex == 'M' ? "checked" : "" %> >
+  F<input type="radio" id="sex" name="cat[sex]" value="F" <%= cat.sex == 'F' ? "checked" : "" %> >
+
+  <br>
+
+  <label for="birthdate">Birth Date</label>
+  <input type="date" name="cat[birth_date]" id="birthdate" value="<%= cat.birth_date || Time.now.to_date %>">
+
+  <br>
 
   <label for="color">Color</label>
-  <select id="color">
+  <select name="cat[color]" id="color">
     <option disabled selected>Please Select a Color</option>
     <% Cat.colors.each do |color| %>
-      <option value=" <%= color %>"> <%= color %></option>
+      <option value="<%= color %>" <%= cat.color == color ? "selected" : "" %> > <%= color %></option>
     <% end %>
   </select>
+
+  <br>
+
+  <label for="description">Description</label> <br>
+  <textarea id="description" name="cat[description]" rows="8" cols="80"> <%= cat.description %></textarea>
+
+  <br>
+
+  <input type="submit" value="Save cat details">
 
 </form>

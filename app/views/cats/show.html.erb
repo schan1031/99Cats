@@ -1,5 +1,8 @@
-<h1> <%= @cat.name %> </h1>
-<h2>Cat Attributes</h2>
+<header>
+  <h1> <%= @cat.name %> </h1>
+  <h2>Cat Attributes</h2>
+  <%= link_to "Edit Cat Attributes", edit_cat_url %>
+</header>
 <table>
   <tr>
     <th>Sex</th>
@@ -15,3 +18,7 @@
 
 <h3>Description</h3>
 <p> <%= @cat.description %> </p>
+
+<footer>
+  <%= link_to "Main Page", cats_url %>
+</footer>
