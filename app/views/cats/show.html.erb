@@ -17,8 +17,28 @@
 </table>
 
 <h3>Description</h3>
-<p> <%= @cat.description %> </p>
+<p><%= @cat.description %></p>
+
+<h3>Rental Request Dates</h3>
+<table>
+  <tr>
+    <th>Start Dates</th>
+    <th>End Dates</th>
+  </tr>
+
+  <% @requests.each do |request|%>
+    <tr>
+      <td><%= request.start_date%></td>
+      <td><%= request.end_date%></td>
+    </tr>
+  <% end %>
+</table>
+
 
 <footer>
+  <%= button_to "Delete Cat", cat_url(@cat), method: :delete%>
+
+  <br>
+
   <%= link_to "Main Page", cats_url %>
 </footer>

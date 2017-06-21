@@ -4,6 +4,11 @@ class Cat < ApplicationRecord
   validates :sex, inclusion: { in: %w(M F), message: 'Invalid Sex' }
   validates :color, inclusion: { in: VALID_COLORS, message: 'Invalid Color' }
 
+  has_many :cat_rental_requests,
+    primary_key: :id,
+    foreign_key: :cat_id,
+    class_name: 'CatRentalRequest'
+
   def age
     Time.now.year - self.birth_date.year
   end

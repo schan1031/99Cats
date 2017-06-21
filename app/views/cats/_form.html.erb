@@ -2,7 +2,7 @@
 <% _verb = cat.id ? "PATCH" : "CREATE" %>
 
 <form action="<%= _action %>" method="post">
-  <input type="hidden" name="_method" value=" <%= _verb %> ">
+  <input type="hidden" name="_method" value="<%= _verb %>">
 
   <label for="name">Name</label>
   <input type="text" id="name" name="cat[name]" value="<%= cat.name %>">

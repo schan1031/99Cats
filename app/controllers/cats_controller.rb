@@ -38,6 +38,15 @@ class CatsController < ApplicationController
     end
   end
 
+  def destroy
+    @cat = Cat.find_by(id: params[:id])
+    if @cat.destroy
+      redirect_to cats_url
+    else
+      render json: ['Cat does not exist D:'], status: 404
+    end
+  end
+
   private
   def cat_params
     params.require(:cat).permit(:name, :birth_date, :sex, :color, :description)
