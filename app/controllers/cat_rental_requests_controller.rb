@@ -14,10 +14,10 @@ class CatRentalRequestsController < ApplicationController
     end
   end
 
-  def show
-    @requests = CatRentalRequest.ordered_dates
-    redirect_to cat_url(@requests.first.cat_id)
-  end
+  # def show
+  #   @requests = CatRentalRequest.ordered_dates
+  #   redirect_to cat_url(@requests.first.cat_id)
+  # end
 
   private
 

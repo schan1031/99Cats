@@ -23,9 +23,24 @@ class CatRentalRequest < ApplicationRecord
     end
   end
 
-  def self.ordered_dates
+  def self.ordered_dates(id)
     CatRentalRequest
-      .where(cat_id: self.cat_id)
+      .where(cat_id: id)
       .order('start_date')
+  end
+
+  def overlapping_pending_requests
+    overlapping_requests.where(status: 'PENDING')
+  end
+
+  def approve!
+    CatRentalRequest.transaction do
+      self.update_attributes(status: "APPROVED")
+      overlapping_pending_requests.update_all(status: "DENIED")
+    end
+  end
+
+  def deny!
+    self.update_attributes(status: "DENIED")
   end
 end
